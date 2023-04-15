@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include <conio.h>
 #include <windows.h>
 using namespace std;
 
@@ -10,6 +9,10 @@ int chanceLeft;
 int playerGuess;
 int playerChoiceLevel;
 int TotalGuess;
+
+void clr(){
+	system("cls");
+}
 
 void display(){
 	cout << "Oi, ayo main tebak-tebakan!\n" <<endl;
@@ -22,10 +25,8 @@ int random(){
     return rand() % 100 + 1;
 }
 
-
-
 void Logic(int guess_sum_BasedOnLevel){
-	int randomNumber = random();
+	int randomNumber = random(); 
 	while (chanceLeft < guess_sum_BasedOnLevel) {
         cout << "Coba tebak angka dari 1-100: ";
         cin >> playerGuess;
@@ -33,11 +34,15 @@ void Logic(int guess_sum_BasedOnLevel){
         TotalGuess++;
 		
         if (playerGuess == randomNumber) {
+        	clr();
             cout << "Sip, luwh nebak sebanyak " << TotalGuess << " kali." << endl;
             break;
         } else if (playerGuess < randomNumber) {
+        	clr();
             cout << "terlalu rendah, mas." << endl;
+            
         } else {
+        	clr();
             cout << "dugaanmu kebesaran, paman" << endl;
         } 
 		
@@ -47,8 +52,17 @@ void Logic(int guess_sum_BasedOnLevel){
 			gameOver = true;
 			
 		if (gameOver == true){
-				cout << "angka yang bener itu sebenernya " << randomNumber;
+			char playAgain;
+			cout << "angka yang bener itu sebenernya " << randomNumber;
+			cout << "mw main lg kh bliaw? (Y/T)";
+			cin >> playAgain;
+			if (playAgain == 'Y'){
+				cout << "\nsementara ini dulu lah, gpp ntar dilanjut";
 			}
+			else{
+				break;
+			}
+		}
 			break;
 		}
     }
@@ -69,7 +83,7 @@ void levelChoice(){
 	    	for (int i = 3; i >= 1; i--) {
 	        cout << i << endl;
 	        Sleep(1000);
-	    	}
+	    	} system("cls");
 	    	
 	    	switch (playerChoiceLevel) {
 	    		case 1:
@@ -80,6 +94,9 @@ void levelChoice(){
 	    			break;
 	    		case 3:
 	    			Logic(3);
+	    			break;
+	    		default:
+	    			cout << "prikitiwww"; 
 	    			break;
 			}
 		}
@@ -94,15 +111,11 @@ void levelChoice(){
 	
 }
 
-
-
-
 int main () {
 	
 	while (!gameOver) {
 		display();
 		levelChoice();
-		//logic();
 	}
 }
 
