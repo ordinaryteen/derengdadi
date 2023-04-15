@@ -4,27 +4,32 @@
 #include <windows.h>
 using namespace std;
 
+//INITIALIZE!
 bool gameOver;
 int chanceLeft;
 int playerGuess;
 int playerChoiceLevel;
 int TotalGuess;
 
+//laziness come inside me fr
 void clr(){
 	system("cls");
 }
 
+//just to give the user an information of the game itself
 void display(){
 	cout << "Oi, ayo main tebak-tebakan!\n" <<endl;
 	cout << "mau level yang gimana niihh?\n1.level ez "<< endl	<< "2.level lumayan"<< endl <<"3.level hardd" << endl;
 	cout << "\nLevel pilihan:" ;
 }
 
+//to generate random number
 int random(){
     srand(time(NULL)); 
     return rand() % 100 + 1;
 }
 
+//what's inside of them, pretty easy.
 void Logic(int guess_sum_BasedOnLevel){
 	int randomNumber = random(); 
 	while (chanceLeft < guess_sum_BasedOnLevel) {
@@ -48,26 +53,27 @@ void Logic(int guess_sum_BasedOnLevel){
 		
 		if (TotalGuess != guess_sum_BasedOnLevel){
 			cout << "P ingfo, kesempatanmu kurang " << guess_sum_BasedOnLevel - chanceLeft << "\n"<< endl;
-		} else{
+		} 
+		
+		else{
 			gameOver = true;
 			
-		if (gameOver == true){
-			char playAgain;
-			cout << "angka yang bener itu sebenernya " << randomNumber;
-			cout << "mw main lg kh bliaw? (Y/T)";
-			cin >> playAgain;
-			if (playAgain == 'Y'){
-				cout << "\nsementara ini dulu lah, gpp ntar dilanjut";
+			if (gameOver == true){
+				char playAgain;
+				clr();
+				cout << "angka yang bener itu sebenernya " << randomNumber << endl;
+				cout << "mw main lg kh bliaw? (Y/T)";
+				cin >> playAgain;
+				if (playAgain == 'Y'){
+					MAS SINGGIH IKI YOKPO, AKU PENGEN NYELOK VOID LEVELCHOICE (BARIS 77), TAPI NDEK ISOR E
+				}
 			}
-			else{
 				break;
-			}
-		}
-			break;
 		}
     }
 }
 
+//this is when it comes to sculpt it to be a beautiful terminal
 void levelChoice(){
 	cin >> playerChoiceLevel;
 	bool validchoice = false;
@@ -78,12 +84,12 @@ void levelChoice(){
 		}
 		
 		if (validchoice == true){
-			system ("cls");
+			clr();
 			cout << "Dimulai pada:\n";
 	    	for (int i = 3; i >= 1; i--) {
 	        cout << i << endl;
 	        Sleep(1000);
-	    	} system("cls");
+	    	} clr();
 	    	
 	    	switch (playerChoiceLevel) {
 	    		case 1:
@@ -95,9 +101,6 @@ void levelChoice(){
 	    		case 3:
 	    			Logic(3);
 	    			break;
-	    		default:
-	    			cout << "prikitiwww"; 
-	    			break;
 			}
 		}
 		
@@ -108,11 +111,9 @@ void levelChoice(){
 		}
 	}
 	while (!validchoice);
-	
 }
 
 int main () {
-	
 	while (!gameOver) {
 		display();
 		levelChoice();
