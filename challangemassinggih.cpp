@@ -22,17 +22,20 @@ int random(){
     return rand() % 100 + 1;
 }
 
+
+
 void Logic(int guess_sum_BasedOnLevel){
+	int randomNumber = random();
 	while (chanceLeft < guess_sum_BasedOnLevel) {
         cout << "Coba tebak angka dari 1-100: ";
         cin >> playerGuess;
         chanceLeft++;
         TotalGuess++;
 		
-        if (playerGuess == random()) {
+        if (playerGuess == randomNumber) {
             cout << "Sip, luwh nebak sebanyak " << TotalGuess << " kali." << endl;
             break;
-        } else if (playerGuess < random()) {
+        } else if (playerGuess < randomNumber) {
             cout << "terlalu rendah, mas." << endl;
         } else {
             cout << "dugaanmu kebesaran, paman" << endl;
@@ -44,9 +47,8 @@ void Logic(int guess_sum_BasedOnLevel){
 			gameOver = true;
 			
 		if (gameOver == true){
-				cout << "angka yang bener itu sebenernya " << random();
+				cout << "angka yang bener itu sebenernya " << randomNumber;
 			}
-			
 			break;
 		}
     }
@@ -57,7 +59,7 @@ void levelChoice(){
 	bool validchoice = false;
 	
 	do {
-		if (playerChoiceLevel == '1' || playerChoiceLevel == '2' || playerChoiceLevel == '3') {
+		if (playerChoiceLevel == 1 || playerChoiceLevel == 2 || playerChoiceLevel == 3) {
 			validchoice = true;
 		}
 		
@@ -68,11 +70,23 @@ void levelChoice(){
 	        cout << i << endl;
 	        Sleep(1000);
 	    	}
+	    	
+	    	switch (playerChoiceLevel) {
+	    		case 1:
+	    			Logic(10);
+	    			break;
+	    		case 2:
+	    			Logic(5);
+	    			break;
+	    		case 3:
+	    			Logic(3);
+	    			break;
+			}
 		}
 		
 		else{
 			system ("cls");
-			cout << "Pilihan tdiak valdi! Dimohon untuk memilih pliehan yg fadil." << random() << endl;
+			cout << "ALERT!-------Pilihan tdiak valdi! Dimohon untuk memilih pliehan yg fadil.--------"<< endl;
 			break;
 		}
 	}
@@ -91,5 +105,4 @@ int main () {
 		//logic();
 	}
 }
-
 
